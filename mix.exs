@@ -8,9 +8,9 @@ defmodule PhoenixOauth2Provider.Mixfile do
       app: :phoenix_oauth2_provider,
       version: @version,
       elixir: "~> 1.8",
-      elixirc_paths: elixirc_paths(Mix.env),
-      start_permanent: Mix.env == :prod,
-      compilers: [:phoenix] ++ Mix.compilers,
+      elixirc_paths: elixirc_paths(Mix.env()),
+      start_permanent: Mix.env() == :prod,
+      compilers: [:phoenix] ++ Mix.compilers(),
       deps: deps(),
 
       # Hex
@@ -20,11 +20,11 @@ defmodule PhoenixOauth2Provider.Mixfile do
       # Docs
       name: "PhoenixOauth2Provider",
       docs: docs()
-   ]
+    ]
   end
 
   def application do
-    [extra_applications: extra_applications(Mix.env)]
+    [extra_applications: extra_applications(Mix.env())]
   end
 
   defp extra_applications(:test), do: [:ecto, :logger]
@@ -35,19 +35,17 @@ defmodule PhoenixOauth2Provider.Mixfile do
 
   defp deps do
     [
-      {:ex_oauth2_provider, "~> 0.5.1"},
-      {:phoenix, "~> 1.4"},
-      {:phoenix_html, "~> 2.0"},
-
-      {:phoenix_ecto, "~> 4.0.0", only: [:test, :dev]},
-      {:credo, "~> 1.1.0", only: [:dev, :test]},
-      {:jason, "~> 1.0", only: [:dev, :test]},
-
+      {:ex_oauth2_provider, "~> 0.5.6"},
+      {:telemetry, "~> 1.0"},
+      {:phoenix, "~> 1.6"},
+      {:phoenix_html, "~> 3.2"},
+      {:phoenix_ecto, "~> 4.4", only: [:test, :dev]},
+      {:credo, "~> 1.6", only: [:dev, :test]},
+      {:jason, "~> 1.3", only: [:dev, :test]},
       {:ex_doc, ">= 0.0.0", only: :dev},
-
-      {:ecto_sql, "~> 3.0.0", only: :test},
-      {:plug_cowboy, "~> 2.0", only: :test},
-      {:postgrex, "~> 0.14.0", only: :test}
+      {:ecto_sql, "~> 3.7.0", only: :test},
+      {:plug_cowboy, "~> 2.5", only: :test},
+      {:postgrex, "~> 0.16.0", only: :test}
     ]
   end
 
@@ -62,7 +60,8 @@ defmodule PhoenixOauth2Provider.Mixfile do
 
   defp docs do
     [
-      source_ref: "v#{@version}", main: "PhoenixOauth2Provider",
+      source_ref: "v#{@version}",
+      main: "PhoenixOauth2Provider",
       canonical: "http://hexdocs.pm/phoenix_oauth2_provider",
       source_url: "https://github.com/danschultzer/phoenix_oauth2_provider",
       extras: ["README.md"]
