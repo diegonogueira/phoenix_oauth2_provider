@@ -35,7 +35,7 @@ defmodule PhoenixOauth2Provider.Mixfile do
 
   defp deps do
     [
-      {:ex_oauth2_provider, "~> 0.5.6"},
+      {:ex_oauth2_provider, github: "heroinbob/ex_oauth2_provider"},
       {:telemetry, "~> 1.0"},
       {:phoenix, "~> 1.6"},
       {:phoenix_html, "~> 3.2"},
